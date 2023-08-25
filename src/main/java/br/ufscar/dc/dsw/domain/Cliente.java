@@ -67,13 +67,7 @@ public class Cliente extends Usuario {
 		this.sexo = sexo;
 	}
 
-	/*public LocalDate getDataNascimento() {
-		return dataNascimento;
-	}
 
-	public void setDataNascimento(LocalDate dataNascimento) {
-		this.dataNascimento = dataNascimento;
-	}*/
 
 	public String getDataNascimento() {
 		return dataNascimento;

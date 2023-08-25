@@ -1,11 +1,6 @@
 package br.ufscar.dc.dsw.controller;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
-
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,7 +43,6 @@ public class ClienteController {
 			return "cliente/cadastro";
 		}
 
-		// Verifica se a data de nascimento é válida e não é futura
     
         // Verifica se a data de nascimento é válida e não é futura
 		try {

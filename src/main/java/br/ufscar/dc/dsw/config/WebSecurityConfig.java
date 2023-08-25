@@ -40,7 +40,24 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-				http.authorizeRequests()
+
+				http.csrf().disable().authorizeRequests()
+				// Controladores REST
+				.antMatchers("/clientes", "/locadoras", "/locacoes").permitAll()
+				.antMatchers("/clientes/{\\d+}", "/locadoras/{\\d+}").permitAll()
+				.antMatchers("/locacoes/{\\d+}").permitAll()
+				.antMatchers("/locadoras/cidades/{\\w+}").permitAll()
+				.antMatchers("/locacoes/clientes/{\\d+}").permitAll()
+				.antMatchers("/locacoes/locadoras/{\\d+}").permitAll()
+				.antMatchers("/error", "/login/**", "/js/**", "/css/**", "/image/**", "/webjars/**", "/lista/**").permitAll()
+				.anyRequest().authenticated()
+			.and()
+				.formLogin().loginPage("/login").permitAll()
+			.and()
+				.logout().logoutSuccessUrl("/").permitAll();
+
+		
+				/*http.authorizeRequests()
 				.antMatchers("/error", "/login/**", "/js/**", "/css/**", "/image/**", "/webjars/**", "/lista/**").permitAll()
 				.antMatchers("/locacoes/**").hasAnyRole("Cliente", "Locadora")
 				.antMatchers("/locadoras/**", "/clientes/**", "/usuarios/**").hasRole("Admin")
@@ -52,6 +69,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 			.and()
 				.logout()
 				.logoutSuccessUrl("/")
-				.permitAll();
+				.permitAll();*/
 	}
 }
