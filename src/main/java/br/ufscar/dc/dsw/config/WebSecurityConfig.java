@@ -41,17 +41,21 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 
+				
 				http.csrf().disable().authorizeRequests()
 				// Controladores REST
-				.antMatchers("/clientes", "/locadoras", "/locacoes").permitAll()
-				.antMatchers("/clientes/{\\d+}", "/locadoras/{\\d+}").permitAll()
+				.antMatchers("/api/clientes", "/locadoras", "/locacoes").permitAll()
+				.antMatchers("/api/clientes/{\\d+}", "/locadoras/{\\d+}").permitAll()
 				.antMatchers("/locacoes/{\\d+}").permitAll()
 				.antMatchers("/locadoras/cidades/{\\w+}").permitAll()
 				.antMatchers("/locacoes/clientes/{\\d+}").permitAll()
 				.antMatchers("/locacoes/locadoras/{\\d+}").permitAll()
+				.antMatchers("/api/**").permitAll()
 				.antMatchers("/error", "/login/**", "/js/**", "/css/**", "/image/**", "/webjars/**", "/lista/**").permitAll()
+				.antMatchers("/locacoes/**").hasAnyRole("Cliente", "Locadora")
+				.antMatchers("/locadoras/**", "/clientes/**", "/usuarios/**").hasRole("Admin")
 				.anyRequest().authenticated()
-			.and()
+		 	.and()
 				.formLogin().loginPage("/login").permitAll()
 			.and()
 				.logout().logoutSuccessUrl("/").permitAll();

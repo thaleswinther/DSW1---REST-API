@@ -46,7 +46,7 @@ public class ClienteRestController {
 			}
 		}
 		
-		cliente.setCPF((String) json.get("cpf"));
+		cliente.setCPF((String) json.get("CPF"));
 		cliente.setTelefone((String) json.get("telefone"));
 		cliente.setSexo((String) json.get("sexo"));
 		cliente.setDataNascimento((String) json.get("dataNascimento"));		
@@ -56,8 +56,9 @@ public class ClienteRestController {
         cliente.setRole((String) json.get("role"));
 	}
 
-	@GetMapping(path = "/clientes")
+	@GetMapping(path = "/api/clientes")
 	public ResponseEntity<List<Cliente>> lista() {
+		System.out.println("\n\n PASSEI AQUI \n\n");
 		List<Cliente> lista = service.buscarTodos();
 		if (lista.isEmpty()) {
 			return ResponseEntity.notFound().build();
@@ -66,7 +67,7 @@ public class ClienteRestController {
 	}
 
 	
-	@GetMapping(path = "/clientes/{id}")
+	@GetMapping(path = "/api/clientes/{id}")
 	public ResponseEntity<Cliente> lista(@PathVariable("id") long id) {
 		Cliente cliente = service.buscarPorId(id);
 		if (cliente == null) {
@@ -75,7 +76,7 @@ public class ClienteRestController {
 		return ResponseEntity.ok(cliente);
 	}
 
-	@PostMapping(path = "/clientes")
+	@PostMapping(path = "/api/clientes")
 	@ResponseBody
 	public ResponseEntity<Cliente> cria(@RequestBody JSONObject json) {
 		try {
@@ -93,7 +94,7 @@ public class ClienteRestController {
 		}
 	}
 
-	@PutMapping(path = "/clientes/{id}")
+	@PutMapping(path = "/api/clientes/{id}")
 	public ResponseEntity<Cliente> atualiza(@PathVariable("id") long id, @RequestBody JSONObject json) {
 		try {
 			if (isJSONValid(json.toString())) {
@@ -113,7 +114,7 @@ public class ClienteRestController {
 		}
 	}
 
-	@DeleteMapping(path = "/clientes/{id}")
+	@DeleteMapping(path = "/api/clientes/{id}")
 	public ResponseEntity<Boolean> remove(@PathVariable("id") long id) {
 
 		Cliente cliente = service.buscarPorId(id);

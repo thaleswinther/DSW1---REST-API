@@ -12,6 +12,8 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import br.ufscar.dc.dsw.validation.UniqueCPF;
 
 
@@ -41,6 +43,7 @@ public class Cliente extends Usuario {
 	//private LocalDate dataNascimento;
     
 	@OneToMany(mappedBy = "cliente", cascade = CascadeType.REMOVE)
+	@JsonIgnore
 	private List<Locacao> locacoes;
 
 	public String getCPF() {

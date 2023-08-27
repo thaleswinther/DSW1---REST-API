@@ -10,6 +10,7 @@ import javax.persistence.CascadeType;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import br.ufscar.dc.dsw.validation.UniqueCNPJ;
 
@@ -30,6 +31,7 @@ public class Locadora extends Usuario {
 	private String cidade;
 
 	@OneToMany(mappedBy = "locadora", cascade = CascadeType.REMOVE)
+	@JsonIgnore
 	private List<Locacao> locacoes;
 
 	
