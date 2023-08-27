@@ -58,7 +58,6 @@ public class ClienteRestController {
 
 	@GetMapping(path = "/api/clientes")
 	public ResponseEntity<List<Cliente>> lista() {
-		System.out.println("\n\n PASSEI AQUI \n\n");
 		List<Cliente> lista = service.buscarTodos();
 		if (lista.isEmpty()) {
 			return ResponseEntity.notFound().build();

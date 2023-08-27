@@ -44,12 +44,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				
 				http.csrf().disable().authorizeRequests()
 				// Controladores REST
-				.antMatchers("/api/clientes", "/locadoras", "/locacoes").permitAll()
-				.antMatchers("/api/clientes/{\\d+}", "/locadoras/{\\d+}").permitAll()
-				.antMatchers("/locacoes/{\\d+}").permitAll()
-				.antMatchers("/locadoras/cidades/{\\w+}").permitAll()
-				.antMatchers("/locacoes/clientes/{\\d+}").permitAll()
-				.antMatchers("/locacoes/locadoras/{\\d+}").permitAll()
+				.antMatchers("/api/clientes", "/api/locadoras", "/api/locacoes").permitAll()
+				.antMatchers("/api/clientes/{\\d+}", "/api/locadoras/{\\d+}").permitAll()
+				.antMatchers("/api/locacoes/{\\d+}").permitAll()
+				.antMatchers("/api/locadoras/cidades/{\\w+}").permitAll()
+				.antMatchers("/api/locacoes/clientes/{\\d+}").permitAll()
+				.antMatchers("/api/locacoes/locadoras/{\\d+}").permitAll()
 				.antMatchers("/api/**").permitAll()
 				.antMatchers("/error", "/login/**", "/js/**", "/css/**", "/image/**", "/webjars/**", "/lista/**").permitAll()
 				.antMatchers("/locacoes/**").hasAnyRole("Cliente", "Locadora")
@@ -59,20 +59,5 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				.formLogin().loginPage("/login").permitAll()
 			.and()
 				.logout().logoutSuccessUrl("/").permitAll();
-
-		
-				/*http.authorizeRequests()
-				.antMatchers("/error", "/login/**", "/js/**", "/css/**", "/image/**", "/webjars/**", "/lista/**").permitAll()
-				.antMatchers("/locacoes/**").hasAnyRole("Cliente", "Locadora")
-				.antMatchers("/locadoras/**", "/clientes/**", "/usuarios/**").hasRole("Admin")
-				.anyRequest().authenticated()
-			.and()
-				.formLogin()
-				.loginPage("/login")
-				.permitAll()
-			.and()
-				.logout()
-				.logoutSuccessUrl("/")
-				.permitAll();*/
 	}
 }

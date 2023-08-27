@@ -73,6 +73,12 @@ public class LocadoraRestController {
 		return ResponseEntity.ok(locadora);
 	}
 
+    @GetMapping("api/locadoras/cidades/{nome}")
+    public ResponseEntity<List<Locadora>> listarLocadorasPorCidade(@PathVariable String nome) {
+        List<Locadora> locadorasPorCidade = service.buscarPorCidade(nome);
+        return ResponseEntity.ok(locadorasPorCidade);
+    }
+
 	@PostMapping(path = "/api/locadoras")
 	@ResponseBody
 	public ResponseEntity<Locadora> cria(@RequestBody JSONObject json) {

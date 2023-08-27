@@ -46,7 +46,7 @@ public class LocacaoRestController {
         return ResponseEntity.ok(locacoes);
     }
 
-    @GetMapping("/api/locacoes/locadora/{id}")
+    @GetMapping("/api/locacoes/locadoras/{id}")
     public ResponseEntity<List<Locacao>> listaLocacoesDaLocadora(@PathVariable Long id) {
         List<Locacao> locacoes = service.buscarTodosPorIdLocadora(id);
         return ResponseEntity.ok(locacoes);
