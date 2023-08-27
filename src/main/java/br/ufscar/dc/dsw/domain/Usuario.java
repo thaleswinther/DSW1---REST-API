@@ -8,6 +8,8 @@ import javax.persistence.InheritanceType;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 
 @SuppressWarnings("serial")
@@ -33,6 +35,7 @@ public class Usuario extends AbstractEntity<Long> {
     private String role;
     
     @Column(nullable = false)
+	@JsonIgnore
     private boolean enabled;
 		
 	public String getEmail() {
